@@ -43,8 +43,8 @@ const FormComp = () => {
   const radioFields = [
     "Symbols",
     "Numbers",
-    "Lower_Case_Letters",
-    "Upper_Case_Letters",
+    "LowerCase_Letters",
+    "UpperCase_Letters",
   ];
 
   const copyPassword = () => {
