@@ -48,17 +48,30 @@ const FormComp = () => {
   ];
 
   const copyPassword = () => {
-    navigator.clipboard.writeText(state.generatedPassword);
-    toast.success("password copied", {
-      position: "top-center",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: false,
-      pauseOnHover: false,
-      draggable: true,
-      progress: undefined,
-      theme: "colored",
-    });
+    if (state.generatedPassword === "") {
+      toast.error("generate a new password first", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    } else {
+      navigator.clipboard.writeText(state.generatedPassword);
+      toast.success("password copied", {
+        position: "top-center",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: false,
+        draggable: true,
+        progress: undefined,
+        theme: "colored",
+      });
+    }
   };
 
   useEffect(() => {
