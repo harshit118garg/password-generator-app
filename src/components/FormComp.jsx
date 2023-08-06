@@ -136,18 +136,21 @@ const FormComp = () => {
                     </div>
                   </div>
                   <div className="mb-2">
-                    <div className="input-group">
+                    <div className="d-flex justify-content-align-items-center">
+                      <span className="input-group-text text-bg-primary me-4">
+                        Password Length
+                      </span>
                       <input
-                        required={true}
-                        type="number"
-                        className="form-control"
-                        placeholder="Password Length"
+                        type="range"
+                        className="form-range me-4"
+                        min={4}
+                        max={20}
                         value={state.passwordLength}
-                        onChange={onChangeHandler}
                         name="passwordLength"
+                        onChange={onChangeHandler}
                       />
                       <span className="input-group-text text-bg-primary">
-                        Password Length
+                        {state.passwordLength}
                       </span>
                     </div>
                   </div>
