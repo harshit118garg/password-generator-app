@@ -163,7 +163,7 @@ const FormComp = () => {
                     </div>
                   </div>
                   <div className="mb-2">
-                    <div className="d-flex justify-content-align-items-center">
+                    <div className="d-flex justify-content-align-items-center input-box">
                       <span className="input-group-text text-bg-primary me-4">
                         Password Length
                       </span>

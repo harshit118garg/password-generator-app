@@ -20,3 +20,9 @@
 .strength span {
   color: #fff;
 }
+
+@media screen and (max-width: 450px) {
+  .input-box span:first-child {
+    display: none;
+  }
+}
