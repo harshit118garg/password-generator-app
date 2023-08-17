@@ -47,3 +47,20 @@ export const generatePasswordString = (passwordObj, passwordLength) => {
 
   return password.substring(0, Number(passwordLength));
 };
+
+export const getPasswordStrength = (passwordString) => {
+  const regexLowercase = /[a-z]/;
+  const regexUppercase = /[A-Z]/;
+  const regexDigits = /[0-9]/;
+  const regexSpecialChars = /[!@#$%&(){}\[\]\/+\-*=]/;
+
+  let strength = 0;
+
+  if (passwordString.length >= 8) strength += 5; 
+  if (regexLowercase.test(passwordString)) strength += 5;
+  if (regexUppercase.test(passwordString)) strength += 5;
+  if (regexDigits.test(passwordString)) strength += 5;
+  if (regexSpecialChars.test(passwordString)) strength += 5;
+
+  return strength;
+};
