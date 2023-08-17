@@ -5,6 +5,7 @@ import { MdFileCopy } from "react-icons/md";
 import {
   getPasswordObj,
   generatePasswordString,
+  getPasswordStrength,
 } from "../service/passwordManager";
 
 const FormComp = () => {
@@ -15,6 +16,7 @@ const FormComp = () => {
     Numbers: false,
     LowerCase_Letters: false,
     UpperCase_Letters: false,
+    passwordStrength: 5,
   });
 
   const [btnEnable, setBtnEnable] = useState(false);
@@ -30,6 +32,26 @@ const FormComp = () => {
     setState({ ...state, [name]: checked });
   };
 
+  function passStrength() {
+    let strengthObj = {
+      strength: "",
+      color: "",
+    };
+    const { passwordStrength } = state;
+    if (passwordStrength >= 20) {
+      strengthObj.strength = "Strong";
+      strengthObj.color = "bg-primary";
+    } else if (passwordStrength === 15) {
+      strengthObj.strength = "Medium";
+      strengthObj.color = "bg-warning";
+    } else {
+      strengthObj.strength = "Weak";
+      strengthObj.color = "bg-dark";
+    }
+
+    return strengthObj;
+  }
+
   const submiHandler = (e) => {
     e.preventDefault();
     const passObj = getPasswordObj(state);
@@ -37,7 +59,12 @@ const FormComp = () => {
       passObj,
       state.passwordLength
     );
-    setState({ ...state, generatedPassword: passwordString });
+    const passStrength = getPasswordStrength(passwordString);
+    setState({
+      ...state,
+      generatedPassword: passwordString,
+      passwordStrength: passStrength,
+    });
   };
 
   const radioFields = [
@@ -152,6 +179,13 @@ const FormComp = () => {
                       <span className="input-group-text text-bg-primary">
                         {state.passwordLength}
                       </span>
+                    </div>
+                  </div>
+                  <div className="mb-2">
+                    <div
+                      className={`strength p-4 d-flex justify-content-center align-items-center ${passStrength().color}`}
+                    >
+                      <span>{passStrength().strength}</span>
                     </div>
                   </div>
                   {radioFields.map((field, index) => (
